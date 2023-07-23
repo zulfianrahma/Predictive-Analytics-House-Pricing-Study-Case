@@ -35,28 +35,30 @@ Data yang digunakan adalah data harga rumah (*House Sales Prediction*) di King C
 
 ### Variabel-variabel pada dataset *House Sales Prediction* adalah sebagai berikut:
 
-*   **id** - id unik dari setiap penjualan rumah
-*   **date** - tanggal penjualan rumah
-*   **price** - harga jual dari rumah
-*   **bedrooms** - jumlah kamar
-*   **bathrooms** - jumlah kamar mandi
-*   **sqft_living** - luas area interior dari rumah
-*   **sqft_lot** - luas area pekarangan
-*   **floors** - jumlah lantai
-*   **waterfront** - varibel *dummy* untuk menentukan apakah terkait ketersediaan pemandangan laut
-*   **view** - index nilai pemandangan dari properti yang mempunyai rentang nilai dari 0 sampai 4
-*   **condition** - index nilai dari kondisi properti yang mempunyai rentang nilai dari 1 sampai 5
-*   **grade** - index nilai kualitas dari properti (meliputi desain dan konstruksi bangunan) yang mempunyai rentang nilai dari 1 sampai 13
-*   **sqft_above** - luas area interior dari rumah yang berada di atas permukaan tanah
-*   **sqft_basement** - luas area interior dari rumah yang berada di bawah permukaan tanah
-*   **yr_built** - tahun pembuatan rumah
-*   **yr_renovated** - tahun terakhir renovasi rumah
-*   **zipcode** - kode pos rumah
-*   **lat** - Lattitude
-*   **long** - Longitude
-*   **sqft_living15** - luas area interior dari rumah terhadap 15 tetangga terdekat
-*   **sqft_lot15** - luas area pekarangan terhadap 15 tetangga terdekat
-
+|  **Variabel** |                                                        **Deskripsi**                                                       | **Tipe Data** |
+|:-------------:|:--------------------------------------------------------------------------------------------------------------------------:|:-------------:|
+|       id      |                                             id unik dari setiap penjualan rumah                                            |    integer    |
+|      date     |                                                   tanggal penjualan rumah                                                  |     object    |
+|     price     |                                                    harga jual dari rumah                                                   |     float     |
+|    bedrooms   |                                                        jumlah kamar                                                        |    integer    |
+|   bathrooms   |                                                     jumlah kamar mandi                                                     |     float     |
+|  sqft_living  |                                                luas area interior dari rumah                                               |    integer    |
+|    sqft_lot   |                                                    luas area pekarangan                                                    |    integer    |
+|     floors    |                                                        jumlah lantai                                                       |     float     |
+|   waterfront  |                         varibel dummy untuk menentukan apakah terkait ketersediaan pemandangan laut                        |    integer    |
+|      view     |                     index nilai pemandangan dari properti yang mempunyai rentang nilai dari 0 sampai 4                     |    integer    |
+|   condition   |                       index nilai dari kondisi properti yang mempunyai rentang nilai dari 1 sampai 5                       |    integer    |
+|     grade     | index nilai kualitas dari properti (meliputi desain dan konstruksi bangunan) yang mempunyai rentang nilai dari 1 sampai 13 |    integer    |
+|   sqft_above  |                              luas area interior dari rumah yang berada di atas permukaan tanah                             |    integer    |
+| sqft_basement |                             luas area interior dari rumah yang berada di bawah permukaan tanah                             |    integer    |
+|    yr_built   |                                                    tahun pembuatan rumah                                                   |    integer    |
+|  yr_renovated |                                                tahun terakhir renovasi rumah                                               |    integer    |
+|    zipcode    |                                                       kode pos rumah                                                       |    integer    |
+|      lat      |                                                          Lattitude                                                         |     float     |
+|      long     |                                                          Longitude                                                         |     float     |
+| sqft_living15 |                                 luas area interior dari rumah terhadap 15 tetangga terdekat                                |    integer    |
+|   sqft_lot15  |                                     luas area pekarangan terhadap 15 tetangga terdekat                                     |    integer    |
+ 
 <img width="260" alt="df info(awal)" src="https://github.com/zulfianrahma/Predictive-Analytics-House-Pricing-Study-Case/assets/97383651/b7039e0a-31a5-4ece-a92f-8baf61ec4144">
 
 Gambar 1. Informasi terkait dataset *House Sales Prediction*
@@ -75,29 +77,7 @@ Tabel 1. Deksripsi statistik terkait dataset *House Sales Prediction*
 |75%|7308900445\.0|645000\.0|4\.0|2\.5|2550\.0|10688\.0|2\.0|0\.0|0\.0|4\.0|8\.0|2210\.0|560\.0|1997\.0|0\.0|98118\.0|47\.678|-122\.125|2360\.0|10083\.0|
 |max|9900000190\.0|7700000\.0|33\.0|8\.0|13540\.0|1651359\.0|3\.5|1\.0|4\.0|5\.0|13\.0|9410\.0|4820\.0|2015\.0|2015\.0|98199\.0|47\.7776|-121\.315|6210\.0|871200\.0|
 
-## Data Preparation
-
-Untuk meningkatkan kualitas data yang akan digunakan pada tahap modelling, dilakukan proses *data preparation* atau penyiapan data. Proses penyiapan data yang dilakukan dapat dibagi menjadi beberapa komponen, yaitu:
-### 1.	Konversi data
--	konversi nilai pada variabel **view** yang awalnya bernilai numerik mulai dari 0 sampai 4 menjadi nilai kategori. Kategori yang ditentukan adalah berikut:
-    -	0 = *No view*
-    - 1 = *Fair*
-    - 2 = *Average*
-    - 3 = *Good*
-    - 4 = *Excelent*
--	konversi nilai pada variabel **condition** yang awalnya bernilai numerik mulai dari 1 sampai 5 menjadi nilai kategori. Kategori yang ditentukan adalah sebagai berikut:
-    - 1 = *Poor - Worn Out*
-    - 2 = *Fair – Badly worn*
-    - 3 = *Average*
-    - 4 = *Good*
-    - 5 = *Very Good*
--	konversi nilai pada variabel **grade** yang awalnya bernilai numerik mulai dari 1 sampai 13 menjadi nilai kategori yang dimasukkan dalam varibel baru bernama **grade_category**. Oleh sebab itu, variabel **grade** akan dihilangkan setelah proses konversi. Nilai kategori tersebut mengikuti aturan rentang berikut:
-    - 0 – 3 = *Bad*
-    - 4 – 6 = *Okay*
-    - 7 – 10 = *Better*
-    - 11 – 13 = *Excelent*
--	konversi nilai pada variabel **yr_renovated** yang awalnya bernilai numerik yaitu tahun renovasi menjadi nilai kategori. Untuk bangunan yang sudah direnovasi akan mendapat kategori *Yes*, sebaliknya akan mendapat kategori *No*. Nilai kategori tersebut akan dimasukkan pada variabel baru yang bernama **renovated** sehingga variabel  **yr_renovated** dihilangkan setelah proses konversi.
--	konversi nilai pada variabel **waterfront** yang awalnya bernilai numerik menjadi nilai kategori. Untuk bangunan yang mempunyai pemandangan laut atau pesisir akan mendapat kategori *Yes*, sebaliknya akan mendapat kategori *No*.
+Tujuan dari proyek ini adalah melakukan proses evaluasi atau prediksi dari harga rumah sehingga harga rumah ("price") menjadi data target. Dalam dataset yang digunakan, setiap variabel di dalamnya dapat dikelompokkan menjadi fitur numerik dan fitur kategori (sebelum mencari korelasi antara fitur dengan data target, dilakukan proses data preparation yang dibahas pada topik selanjutnya). Hubungan korelasi antara data target dengan fitur kategori ditunjukkan mulai dari Gambar 2 sampai dengan Gambar 6. Sedangkan, korelasi antara data target dengan fitur numerik ditunjukkan pada Gambar 7.
 
 ![price vs condition](https://github.com/zulfianrahma/Predictive-Analytics-House-Pricing-Study-Case/assets/97383651/f075c40b-7145-4996-a562-8a3d7495b862)
 
@@ -123,6 +103,34 @@ Gambar 5. Rata - rata "price" relatif terhadap "waterfront"
 
 Gambar 6. Rata - rata "price" relatif terhadap "renovated"
 
+![correlation_matrix](https://github.com/zulfianrahma/Predictive-Analytics-House-Pricing-Study-Case/assets/97383651/7b0b53e0-9367-421a-a33b-a0fc60e68535)
+
+Gambar 7. Matriks Korelasi Fitur Numerik
+
+## Data Preparation
+
+Untuk meningkatkan kualitas data yang akan digunakan pada tahap modelling, dilakukan proses *data preparation* atau penyiapan data. Proses penyiapan data yang dilakukan dapat dibagi menjadi beberapa komponen, yaitu:
+
+### 1.	Konversi data
+-	konversi nilai pada variabel **view** yang awalnya bernilai numerik mulai dari 0 sampai 4 menjadi nilai kategori. Kategori yang ditentukan adalah berikut:
+    -	0 = *No view*
+    - 1 = *Fair*
+    - 2 = *Average*
+    - 3 = *Good*
+    - 4 = *Excelent*
+-	konversi nilai pada variabel **condition** yang awalnya bernilai numerik mulai dari 1 sampai 5 menjadi nilai kategori. Kategori yang ditentukan adalah sebagai berikut:
+    - 1 = *Poor - Worn Out*
+    - 2 = *Fair – Badly worn*
+    - 3 = *Average*
+    - 4 = *Good*
+    - 5 = *Very Good*
+-	konversi nilai pada variabel **grade** yang awalnya bernilai numerik mulai dari 1 sampai 13 menjadi nilai kategori yang dimasukkan dalam varibel baru bernama **grade_category**. Oleh sebab itu, variabel **grade** akan dihilangkan setelah proses konversi. Nilai kategori tersebut mengikuti aturan rentang berikut:
+    - 0 – 3 = *Bad*
+    - 4 – 6 = *Okay*
+    - 7 – 10 = *Better*
+    - 11 – 13 = *Excelent*
+-	konversi nilai pada variabel **yr_renovated** yang awalnya bernilai numerik yaitu tahun renovasi menjadi nilai kategori. Untuk bangunan yang sudah direnovasi akan mendapat kategori *Yes*, sebaliknya akan mendapat kategori *No*. Nilai kategori tersebut akan dimasukkan pada variabel baru yang bernama **renovated** sehingga variabel  **yr_renovated** dihilangkan setelah proses konversi.
+-	konversi nilai pada variabel **waterfront** yang awalnya bernilai numerik menjadi nilai kategori. Untuk bangunan yang mempunyai pemandangan laut atau pesisir akan mendapat kategori *Yes*, sebaliknya akan mendapat kategori *No*.
 -	melakukan teknik *one-hot-encoding* pada fitur kategori yang meliputi **waterfront, view, condition, renovated** yang hasilnya dapat ditunjukkan pada Tabel 2.
 
 Tabel 2. Lima Data Teratas pada Dataframe setelah Proses One-Hot-Encoding
@@ -137,10 +145,6 @@ Tabel 2. Lima Data Teratas pada Dataframe setelah Proses One-Hot-Encoding
 ### 2.	Penghapusan dan reduksi data 
 -	Menghilangkan variabel **"id", "date", "zipcode", "lat", dan "long"** karena data dari variabel tersebut dirasa tidak diperlukan dalam proses pengembangkan model yang dirancang.
 -	Proses penghilangan *outlier* dengan metode **IQR** (*Inter Quartile Range*)
-![correlation_matrix](https://github.com/zulfianrahma/Predictive-Analytics-House-Pricing-Study-Case/assets/97383651/7b0b53e0-9367-421a-a33b-a0fc60e68535)
-
-Gambar 7. Matriks Korelasi Fitur Numerik
-
 -	Menghilangkan variabel ** “bedrooms”, “bathrooms”, “sqft_lot”, “floors”, “sqft_basement”, “yr_built”, dan “sqft_lot15”** setelah dilakukan analisa pada *correlation matrix* (Gambar 7) yang dihasilkan, dimana hanya dipertahankan 3 variabel numerik yang paling berpengaruh (**sqft_living, sqft_above, dan sqft_living15**)
 -	Melakukan teknik pengurangan dimensi menggunakan *Principal Component Analysis* (**PCA**) supaya data yang berkorelasi dapat disederhanakan. Teknik PCA digunakan pada variabel **sqft_living, sqft_above, dan sqft_living15**. Dalam prosesnya, diambil komponen utama pertama yang dihasilkan sehingga komponen utama kedua dan ketiga tidak diambil. Setelah proses PCA selesai, dibuat variabel baru yang bernama **sqft_area** untuk menampung komponen utama pertama dari teknik PCA. Variabel **sqft_living, sqft_above, dan sqft_living15** dihilangkan setelah variabel **sqft_area** terbentuk.
 
