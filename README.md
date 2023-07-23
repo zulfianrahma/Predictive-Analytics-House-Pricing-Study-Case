@@ -59,12 +59,8 @@ Data yang digunakan adalah data harga rumah (*House Sales Prediction*) di King C
 | sqft_living15 |                                 luas area interior dari rumah terhadap 15 tetangga terdekat                                |    integer    |
 |   sqft_lot15  |                                     luas area pekarangan terhadap 15 tetangga terdekat                                     |    integer    |
 
- 
-<img width="260" alt="df info(awal)" src="https://github.com/zulfianrahma/Predictive-Analytics-House-Pricing-Study-Case/assets/97383651/b7039e0a-31a5-4ece-a92f-8baf61ec4144">
 
-Gambar 1. Informasi terkait dataset *House Sales Prediction*
-
-Jika dilihat dari informasi pada Gambar 1, terdapat 2163 baris data yang tersebar pada 21 kolom data. Tipe data dari dataset tersebut terdiri atas 5 tipe data *float*, 15 tipe data *int*, dan 1 tipe data *object*. Ringkasan terkait data statistik pada dataset tersebut ditunjukkan pada Tabel 1.
+Pada dataset tersebut, terdapat 2163 baris data yang tersebar pada 21 kolom data. Tipe data dari dataset tersebut terdiri atas 5 tipe data *float*, 15 tipe data *int*, dan 1 tipe data *object*. Ringkasan terkait data statistik pada dataset tersebut ditunjukkan pada Tabel 1.
 
 Tabel 1. Deksripsi statistik terkait dataset *House Sales Prediction* 
 |index|id|price|bedrooms|bathrooms|sqft\_living|sqft\_lot|floors|waterfront|view|condition|grade|sqft\_above|sqft\_basement|yr\_built|yr\_renovated|zipcode|lat|long|sqft\_living15|sqft\_lot15|
@@ -117,7 +113,7 @@ Tabel 2. Lima Data Teratas pada Dataframe setelah Proses One-Hot-Encoding
 ### 2.	Penghapusan dan reduksi data 
 -	Menghilangkan variabel **"id", "date", "zipcode", "lat", dan "long"** karena data dari variabel tersebut dirasa tidak diperlukan dalam proses pengembangkan model yang dirancang.
 -	Proses penghilangan *outlier* dengan metode **IQR** (*Inter Quartile Range*)
--	Menghilangkan variabel ** “bedrooms”, “bathrooms”, “sqft_lot”, “floors”, “sqft_basement”, “yr_built”, dan “sqft_lot15”** setelah dilakukan analisa pada *correlation matrix* (Gambar 7) yang dihasilkan, dimana hanya dipertahankan 3 variabel numerik yang paling berpengaruh (**sqft_living, sqft_above, dan sqft_living15**)
+-	Menghilangkan variabel ** “bedrooms”, “bathrooms”, “sqft_lot”, “floors”, “sqft_basement”, “yr_built”, dan “sqft_lot15”** setelah dilakukan analisa pada *correlation matrix* (Gambar 6) yang dihasilkan, dimana hanya dipertahankan 3 variabel numerik yang paling berpengaruh (**sqft_living, sqft_above, dan sqft_living15**)
 -	Melakukan teknik pengurangan dimensi menggunakan *Principal Component Analysis* (**PCA**) supaya data yang berkorelasi dapat disederhanakan. Teknik PCA digunakan pada variabel **sqft_living, sqft_above, dan sqft_living15**. Dalam prosesnya, diambil komponen utama pertama yang dihasilkan sehingga komponen utama kedua dan ketiga tidak diambil. Setelah proses PCA selesai, dibuat variabel baru yang bernama **sqft_area** untuk menampung komponen utama pertama dari teknik PCA. Variabel **sqft_living, sqft_above, dan sqft_living15** dihilangkan setelah variabel **sqft_area** terbentuk.
 
 ### 3.	Normalisasi data
@@ -129,36 +125,57 @@ Tabel 2. Lima Data Teratas pada Dataframe setelah Proses One-Hot-Encoding
 -	Dilakukan proses pemisahan *dataset* menjadi data latih dan data uji dengan komposisi 90:10. Pemisahan tersebut didasarkan banyaknya jumlah dataset keseluruhan sejumlah 17186 data. Dengan jumlah dataset dan komposisi pembagian tersebut, diperoleh data latih sebanyak 15467 dan data uji sebanyak 1719. Jumlah tersebut sudah dirasa cukup proporsional.
 
 
-
-Tujuan dari proyek ini adalah melakukan proses evaluasi atau prediksi dari harga rumah sehingga harga rumah ("price") menjadi data target. Dalam dataset yang digunakan, setiap variabel di dalamnya dapat dikelompokkan menjadi fitur numerik dan fitur kategori . Hubungan korelasi antara data target dengan fitur kategori ditunjukkan mulai dari Gambar 2 sampai dengan Gambar 6. Sedangkan, korelasi antara data target dengan fitur numerik ditunjukkan pada Gambar 7.
+Tujuan dari proyek ini adalah melakukan proses evaluasi atau prediksi dari harga rumah sehingga harga rumah ("price") menjadi data target. Dalam dataset yang digunakan, setiap variabel di dalamnya dapat dikelompokkan menjadi fitur numerik dan fitur kategori . Hubungan korelasi antara data target dengan fitur kategori ditunjukkan mulai dari Gambar 1 sampai dengan Gambar 5. Sedangkan, korelasi antara data target dengan fitur numerik ditunjukkan pada Gambar 6.
 
 ![price vs condition](https://github.com/zulfianrahma/Predictive-Analytics-House-Pricing-Study-Case/assets/97383651/f075c40b-7145-4996-a562-8a3d7495b862)
 
-Gambar 2. Rata - rata "price" relatif terhadap "condition"
+Gambar 1. Rata - rata "price" relatif terhadap "condition"
 
+Perbandingan antara rerata harga rumah dengan fitur "condition" yang ditunjukkan pada Gambar 1 menunjukkan bahwa rata-rata harga rumah cenderung meningkat mengikuti variabel **condition**. Kategori tertinggi yaitu kategori "Very Good" memiliki harga rata-rata tertinggi di antara grade lainnya. Sedangkan, kategori terendah yaitu kategori "Poor - Worn Out" memiliki harga terendah di antara  grade lainnya. Oleh sebab itu, fitur "condition" memiliki pengaruh atau dampak yang berbanding lurus terhadap rata-rata harga rumah.
 
 ![price vs grade_category](https://github.com/zulfianrahma/Predictive-Analytics-House-Pricing-Study-Case/assets/97383651/506e83cc-6d1d-4fe9-89bb-2ce705cc320e)
 
-Gambar 3. Rata - rata "price" relatif terhadap "grade_category"
+Gambar 2. Rata - rata "price" relatif terhadap "grade_category"
 
+Perbandingan antara rerata harga rumah dengan fitur "grade_category" yang ditunjukkan pada Gambar 2 menunjukkan bahwa rata-rata harga rumah cenderung meningkat mengikuti variabel **grade_category**. Kategori tertinggi yaitu kategori "Excelent" memiliki harga rata-rata tertinggi di antara grade lainnya. Sedangkan, kategori "Okay" memiliki harga terendah di antara  grade lainnya. Hal tersebut disebabkan tidak ada data rumah yang termasuk dalam kategori terendah fitur "grade_category" yaitu "Bad". Oleh sebab itu, fitur "grade_category" memiliki pengaruh atau dampak yang berbanding lurus terhadap rata-rata harga rumah.
 
 ![price vs view](https://github.com/zulfianrahma/Predictive-Analytics-House-Pricing-Study-Case/assets/97383651/9a5f6041-36c2-49cd-a091-c82a2db40683)
 
-Gambar 4. Rata - rata "price" relatif terhadap "view"
+Gambar 3. Rata - rata "price" relatif terhadap "view"
 
+Perbandingan antara rerata harga rumah dengan fitur "view" yang ditunjukkan pada Gambar 3 menunjukkan bahwa rata-rata harga rumah cenderung meningkat mengikuti variabel **view**. Kategori tertinggi yaitu kategori "Excelent View" memiliki harga rata-rata tertinggi di antara grade lainnya. Sedangkan, kategori terendah yaitu kategori "No view" memiliki harga terendah di antara  grade lainnya. Oleh sebab itu, fitur "view" memiliki pengaruh atau dampak yang berbanding lurus terhadap rata-rata harga rumah.
 
 ![price vs waterfront](https://github.com/zulfianrahma/Predictive-Analytics-House-Pricing-Study-Case/assets/97383651/fa8c8a83-54c2-4d3f-b9b6-72243772b07b)
 
-Gambar 5. Rata - rata "price" relatif terhadap "waterfront"
+Gambar 4. Rata - rata "price" relatif terhadap "waterfront"
 
+Perbandingan antara rerata harga rumah dengan fitur "waterfront" yang ditunjukkan pada Gambar 4 menunjukkan bahwa rata-rata harga rumah cenderung meningkat mengikuti variabel **waterfront**. Kategori "Yes" memiliki harga rata-rata yang lebih tinggi dibandingkan kategori "No". Hal ini menunjukkan bahwa rumah yang mempunyai pemandangan laut mempunyai harga yang lebih tinggi dibandingkan rumah yang tidak mempunyai pemandangan laut. Oleh sebab itu, fitur "waterfront" memiliki pengaruh atau dampak yang berbanding lurus terhadap rata-rata harga rumah.
 
 ![price vs renovated](https://github.com/zulfianrahma/Predictive-Analytics-House-Pricing-Study-Case/assets/97383651/c8b73514-06f5-401c-afa4-6518bc74ea2a)
 
-Gambar 6. Rata - rata "price" relatif terhadap "renovated"
+Gambar 5. Rata - rata "price" relatif terhadap "renovated"
+
+Perbandingan antara rerata harga rumah dengan fitur "renovated" yang ditunjukkan pada Gambar 5 menunjukkan bahwa rata-rata harga rumah cenderung meningkat mengikuti variabel **renovated**. Kategori "Yes" memiliki harga rata-rata yang lebih tinggi dibandingkan kategori "No". Hal ini menunjukkan bahwa rumah yang sudah direnovasi mempunyai harga yang lebih tinggi dibandingkan rumah yang belum direnovasi. Oleh sebab itu, fitur "renovated" memiliki pengaruh atau dampak yang berbanding lurus terhadap rata-rata harga rumah.
 
 ![correlation_matrix](https://github.com/zulfianrahma/Predictive-Analytics-House-Pricing-Study-Case/assets/97383651/7b0b53e0-9367-421a-a33b-a0fc60e68535)
 
-Gambar 7. Matriks Korelasi Fitur Numerik
+Gambar 6. Matriks Korelasi Fitur Numerik
+
+Berdasarkan informasi dari matriks korelasi pada Gambar 6 yang menunjukkan nilai koefisien korelasi tiap fitur numerik pada dataset. Jika fitur - fitur yang mempunyai korelasi dengan fitur harga rumah diurutkan mulai dari yang tertinggi hingga terendah, akan dihasilkan urutan fitur sebagai berikut:
+ 1. sqft_living
+ 2. sqft_living15
+ 3. sqft_above
+ 4. bathrooms
+ 5. bedrooms
+ 6. floors
+ 7. sqft_basement
+ 8. yr_built
+ 9. sqft_lot
+ 10. sqft_lot15
+
+Berdasarkan penjelasan di atas, dapat diambil poin - poin sebagai berikut: 
+- fitur numerik yang mempunyai korelasi paling tinggi di antara fitur numerik lainnya adalah "sqft_living"
+- fitur numerik yang mempunyai korelasi paling rendah di antara fitur numerik lainnya adalah "sqft_lot15"
 
 ## 5. Modeling
 Dalam proses **modelling** pada proyek yang dirancang, digunakan tiga model *machine learning* yaitu **KNNeighbors, Random Forest Regression,** dan **AdaBoost Regressor**. 
@@ -168,13 +185,13 @@ Algoritma KNN menggunakan ‘kesamaan fitur’ untuk memprediksi nilai dari seti
 ![knn-1](https://github.com/zulfianrahma/Predictive-Analytics-House-Pricing-Study-Case/assets/97383651/ea982c63-80ae-45e4-b968-ede8a46fcaca)
 
 
-Gambar 8. Algoritma K-Nearest-Neigbor [5]
+Gambar 7. Algoritma K-Nearest-Neigbor [5]
 
 Random Forest Regression adalah algoritma *supervised learning* yang menggunakan metode pembelajaran *ensemble* untuk proses regresi. Pembelajaran *ensemble* adalah teknik yang menggabungkan prediksi dari beberapa algoritma pembelajaran mesin untuk membuat prediksi yang lebih akurat daripada model tunggal [6].
 
 ![random forest](https://github.com/zulfianrahma/Predictive-Analytics-House-Pricing-Study-Case/assets/97383651/28607431-4c63-4d82-a396-621c8e9f9d56)
 
-Gambar 9. Algoritma Random Forest [6]
+Gambar 8. Algoritma Random Forest [6]
 
 Algoritma boosting bertujuan untuk meningkatkan performa atau akurasi prediksi. Caranya adalah dengan menggabungkan beberapa model sederhana dan dianggap lemah (weak learners) sehingga membentuk suatu model yang kuat (strong ensemble learner). Algoritma boosting muncul dari gagasan mengenai apakah algoritma yang sederhana seperti linear regression dan decision tree dapat dimodifikasi untuk dapat meningkatkan performa. AdaBoost adalah salah model dalam algoritma boosting [7].
 
@@ -230,11 +247,11 @@ Tabel 3. Hasil Pelatihan Model pada Data Latih
 ## 6. Evaluation
 Untuk menentukan kualitas dari model, digunakan metrik **MSE** atau *Mean Squared Error* sebagai metrik evaluasi model. MSE menghitung jumlah selisih kuadrat rata-rata nilai sebenarnya dengan nilai prediksi. Semakin besar nilai MSE menunjukkan kualitas yang buruk pada model tersebut, sebaliknya nilai MSE yang semakin kecil menunjukkan kualitas model yang baik.
 
-Selama proses pelatihan model menggunakan *hyperparameter* terbaiknya pada data latih dan data uji, diperoleh hasil MSE pada masing - masing model yang ditunjukkan pada Gambar 10 dan Tabel 4.
+Selama proses pelatihan model menggunakan *hyperparameter* terbaiknya pada data latih dan data uji, diperoleh hasil MSE pada masing - masing model yang ditunjukkan pada Gambar 9 dan Tabel 4.
 
 ![mse_models](https://github.com/zulfianrahma/Predictive-Analytics-House-Pricing-Study-Case/assets/97383651/7b6a5ef1-6a28-4ac8-a644-ad7952d77085)
 
-Gambar 10. Diagram Batang Hasil Pelatihan Model pada Data Latih dan Data Uji
+Gambar 9. Diagram Batang Hasil Pelatihan Model pada Data Latih dan Data Uji
 
 
 Tabel 4. Hasil Pelatihan Model pada Data Latih dan Data Uji
