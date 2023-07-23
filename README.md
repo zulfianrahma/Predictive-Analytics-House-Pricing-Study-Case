@@ -222,7 +222,12 @@ Tabel 3. Hasil Pelatihan Model pada Data Latih
 ## Evaluation
 Untuk menentukan kualitas dari model, digunakan metrik **MSE** atau *Mean Squared Error* sebagai metrik evaluasi model. MSE menghitung jumlah selisih kuadrat rata-rata nilai sebenarnya dengan nilai prediksi. Semakin besar nilai MSE menunjukkan kualitas yang buruk pada model tersebut, sebaliknya nilai MSE yang semakin kecil menunjukkan kualitas model yang baik.
 
-Selama proses pelatihan model menggunakan *hyperparameter* terbaiknya pada data latih dan data uji, diperoleh hasil MSE pada masing - masing model yang ditunjukkan pada Tabel 4 dan Gambar 10.
+Selama proses pelatihan model menggunakan *hyperparameter* terbaiknya pada data latih dan data uji, diperoleh hasil MSE pada masing - masing model yang ditunjukkan pada Gambar 10 dan Tabel 4.
+
+![mse_models](https://github.com/zulfianrahma/Predictive-Analytics-House-Pricing-Study-Case/assets/97383651/7b6a5ef1-6a28-4ac8-a644-ad7952d77085)
+
+Gambar 10. Diagram Batang Hasil Pelatihan Model pada Data Latih dan Data Uji
+
 
 Tabel 4. Hasil Pelatihan Model pada Data Latih dan Data Uji
 |        **Model**        |  **train_mse**  | **test_mse**    |
@@ -230,10 +235,6 @@ Tabel 4. Hasil Pelatihan Model pada Data Latih dan Data Uji
 |       KNNeighbors       | 20717419.607233 | 60868329.802501 |
 | Random Forest Regressor | 23395585.501724 | 58853949.443876 |
 | AdaBoost Regressor      | 24378081.632522 | 55088400.939983 |
-
-![mse_models](https://github.com/zulfianrahma/Predictive-Analytics-House-Pricing-Study-Case/assets/97383651/7b6a5ef1-6a28-4ac8-a644-ad7952d77085)
-
-Gambar 10. Diagram Batang Hasil Pelatihan Model pada Data Latih dan Data Uji
 
 Berdasarkan hasil tersebut, **KNNeighbor** menunjukkan hasil terbaik di antara model lainnya pada tahap pelatihan dengan *hyperparameter* ** n_neighbors = 9, p = 1, dan weights = uniform **. Sedangkan untuk tahap pengujian, **AdaBoost** menunjukkan hasil terbaik di antara model lainnya dengan *hyperparameter* **learning_rate = 0.01, n_estimators = 100**
 
