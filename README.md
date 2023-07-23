@@ -31,7 +31,7 @@ Menjelaskan tujuan dari pernyataan masalah:
 
 ## 3. Data Understanding
 
-Data yang digunakan adalah data harga rumah (*House Sales Prediction*) di King County, USA. Data tersebut diperoleh melalui Kaggle (https://www.kaggle.com/datasets/harlfoxem/housesalesprediction). Data tersebut merupakan data penjualan mulai dari bulan Mei 2014 sampai dengan Mei 2015. Data tersebut memuat harga jual rumah di King County, termasuk juga Seattle. Terdapat 21 kolom paramater pada data tersebut.
+Data yang digunakan adalah data harga rumah (*House Sales Prediction*) di King County, USA. Data tersebut diperoleh melalui [Kaggle](https://www.kaggle.com/datasets/harlfoxem/housesalesprediction). Data tersebut merupakan data penjualan mulai dari bulan Mei 2014 sampai dengan Mei 2015. Data tersebut memuat harga jual rumah di King County, termasuk juga Seattle. Terdapat 21 kolom paramater pada data tersebut.
 
 ### Variabel-variabel pada dataset *House Sales Prediction* adalah sebagai berikut:
 
